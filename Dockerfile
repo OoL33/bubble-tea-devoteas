@@ -9,5 +9,6 @@ RUN apt-get update -qq \
 ADD . /app
 WORKDIR /app
 RUN bundle install
+RUN yarn
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
