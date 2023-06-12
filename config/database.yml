@@ -24,9 +24,6 @@ default: &default
 
 development:
   <<: *default
-  host: postgres
-  username: postgres
-  password: secret
   database: bubble-tea-devoteas_development
 
   # The specified database role being used to connect to postgres.
