@@ -58,3 +58,33 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'pry-rails', group: [:development, :test]
+gem 'jquery-rails'
+gem 'rspec-rails', '3.8.2', group: [:development, :test]
+gem 'launchy', group: [:development, :test]
+gem 'factory_bot', group: [:development, :test]
+gem 'database_cleaner', group: [:development, :test]
+gem 'valid_attribute', group: [:development, :test]
+gem 'shoulda-matchers', group: [:development, :test], require: false
+gem 'devise'
+gem 'foundation-rails', '~> 6.5'
+gem 'webpacker', '~> 3.3'
+gem "active_model_serializers"
+gem "carrierwave"
+gem "fog-aws"
+
+
+# If you are using Docker Compose to build your application image, 
+# you can directly set environment variables in your Docker Compose configuration file. 
+# In this case, using the dotenv-rails gem may not be necessary.
+# Docker Compose allows you to define environment variables in 
+# the environment section of your service configuration.
+
+# gem 'dotenv-rails', group: [:development, :test]
+
+# Using the above gem dependency will make it load .env to our 
+# application which we want avoid. It will throw the following error
+# rake aborted! 
+# PG::ConnectionBad: 
+# could not translate host name "db" to address: nodename nor servname provided, or not known
