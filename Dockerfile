@@ -10,5 +10,13 @@ ADD . /app
 WORKDIR /app
 RUN bundle install
 RUN yarn
+# Copy the entrypoint script
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+# Set the entrypoint script as the container's entrypoint
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+
+# CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
