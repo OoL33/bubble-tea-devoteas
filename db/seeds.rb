@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-gong_cha = Shop.create(name: "Gong Cha", address: "40-44 Harrison Ave", city: "Chinatown", state: "MA", zip: "02111", telephone: "(617) 574-4870", website: "https://gongchausa.com/", picture: "https://bdc2020.o0bc.com/wp-content/uploads/2022/08/Gong-Cha-630e244f838ea.jpeg")
+gong_cha = Shop.create(name: "Gong Cha", address: "40-44 Harrison Ave", city: "Chinatown", state: "MA", zip: "02111", telephone: "(617) 574-4870", website: "https://gongchausa.com/", picture: "https://static.mothership.sg/1/2017/12/Screen-Shot-2017-12-01-at-4.57.48-PM.png")
 one_zo = Shop.create(name: "One Zo", address: "83 Harrison Ave", city: "Chinatown", state: "MA", zip: "02111", telephone: "(617) 982-6985", website: "https://www.onezo.us/", picture: "https://d1ralsognjng37.cloudfront.net/c370272a-288b-4a80-b0d5-ccdfe11abece.jpeg")
 tea_do = Shop.create(name: "Tea Do", address: "8 Tyler St", city: "Chinatown", state: "MA", zip: "02111", telephone: "(617) 988-8002", website: "http://teadoboston.com", picture: "https://pbs.twimg.com/media/FSfWKtMX0AQEECY?format=jpg&name=large")
 ten_one = Shop.create(name: "Ten One Tea House", address: "279 Newbury St", city: "Back Bay", state: "MA", zip: "02116", telephone: "(774) 371-3195", website: "https://www.tenoneteahouse.com/", picture: "https://d1ralsognjng37.cloudfront.net/d0e9c8b7-b222-4f9c-ba21-ad49a1ed72bb.jpeg")
