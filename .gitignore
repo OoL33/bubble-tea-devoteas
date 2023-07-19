@@ -34,6 +34,5 @@ yarn-debug.log*
 /public/uploads
 
 /.vscode/*
-/bin/*
 /lib/*
 
