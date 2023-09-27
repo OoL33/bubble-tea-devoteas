@@ -1,3 +1,4 @@
+import React from "react";
 import ShopShowPage from "./ShopShowPage";
 import ShopsIndexPage from "./ShopsIndexPage";
 import NewShopForm from "./NewShopForm";
