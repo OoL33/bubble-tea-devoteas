@@ -7,11 +7,20 @@ Rails.application.routes.draw do
   get '/shops/new', to: 'homes#authorized'
   get '/shops/:id', to: 'homes#index'
   get '/shops/:id/reviews', to: 'homes#index'
+  # A catch-all route to serve the main HTML file
+  get "*path", to: "homes#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
   namespace :api do
     namespace :v1 do
       resources :shops, only: [:index, :show, :create] do
         resources :reviews, only: [:create]
+      end
+
+      devise_scope :user do
+        get 'check', to: 'check#check'
+        post 'sign_up', to: 'registrations#create'
+        post 'sign_in', to: 'sessions#create'
+        resources :profile_photos, only: [:show, :update]
       end
     end
   end
