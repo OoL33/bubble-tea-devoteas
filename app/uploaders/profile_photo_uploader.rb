@@ -19,7 +19,7 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url(*args)
     # For Rails 3.1+ asset pipeline compatibility:
-    "https://s3.amazonaws.com/bubble-tea-prod-profile-photos/default/pexels-telly-mina-12666797.jpg"
+    "https://s3.amazonaws.com/bubble-tea-prod-profile-photos/default/default.jpg"
   end
 
   # Process files as they are uploaded:https://image.emojipng.com/875/198875.jpg

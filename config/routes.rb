@@ -20,7 +20,11 @@ Rails.application.routes.draw do
         get 'check', to: 'check#check'
         post 'sign_up', to: 'registrations#create'
         post 'sign_in', to: 'sessions#create'
-        resources :profile_photos, only: [:show, :update]
+      end
+
+      # Include profile_photos as a nested resource under users
+      resources :users, only: [] do
+        resource :profile_photo, only: [:show, :update]
       end
     end
   end
