@@ -74,7 +74,6 @@ gem "active_model_serializers"
 gem "carrierwave"
 gem "fog-aws"
 
-
 # If you are using Docker Compose to build your application image, 
 # you can directly set environment variables in your Docker Compose configuration file. 
 # In this case, using the dotenv-rails gem may not be necessary.

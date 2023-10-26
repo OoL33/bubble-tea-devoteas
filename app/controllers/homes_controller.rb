@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   before_action :authorize_admin, only: [:authorized]
+  skip_before_action :authorize_admin, only: [:check]
 
   def index
   end
@@ -7,7 +8,7 @@ class HomesController < ApplicationController
   def authorized
   end
 
-  protected 
+  protected
 
   def authorize_admin
     if !current_user

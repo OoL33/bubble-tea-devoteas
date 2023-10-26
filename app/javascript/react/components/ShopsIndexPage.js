@@ -1,51 +1,58 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import ShopTile from "./ShopTile"
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import ShopTile from "./ShopTile";
+import UserProfile from "./UserProfile";
+import { useUserData } from "./UserDataProvider";
 
 const ShopsIndexPage = () => {
-  const [getShops, setShops] = useState([])
+  const user = useUserData();
+
+  const [getShops, setShops] = useState([]);
 
   const showShops = async () => {
     try {
-      const response = await fetch("/api/v1/shops")
+      const response = await fetch("/api/v1/shops");
       if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
+        const errorMessage = `${response.status} (${response.statusText})`;
+        throw new Error(errorMessage);
       }
-      const responseBody = await response.json()
-      const shopsData = responseBody.shops
-      setShops(shopsData)
+      const responseBody = await response.json();
+      const shopsData = responseBody.shops;
+      setShops(shopsData);
     } catch (error) {
-      console.error(`Error in fetch: ${error.message}`)
+      console.error(`Error in fetch: ${error.message}`);
     }
-  }
+  };
 
   useEffect(() => {
-    showShops()
-  }, [])
+    showShops();
+  }, []);
 
   const shopTiles = getShops.map((shop) => {
     return (
       <Link to={`/shops/${shop.id}`} key={shop.id}>
-        <ShopTile
-          shop={shop}
-        />
+        <ShopTile shop={shop} />
       </Link>
-    )
-  })
+    );
+  });
 
   return (
     <div className="webpage">
       <div>
         <h1 className="page-header">All Bubble Tea Shops</h1>
-        <div className="grid-container">
+        {user && (
+          <div>
+            <UserProfile user={user} />
+          </div>
+        )}
+        <div>
           <div className="grid-x grid-margin-x small-up-2 medium-up-3 large-up-4">
             {shopTiles}
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShopsIndexPage
+export default ShopsIndexPage;

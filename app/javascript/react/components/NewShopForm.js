@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import { Navigate } from "react-router-dom"
-import _ from "lodash"
-import ErrorList from "./ErrorList"
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+import _ from "lodash";
+import ErrorList from "./ErrorList";
 
 const NewShopForm = (props) => {
-  const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [shopRecord, setShopRecord] = useState({
     name: "",
     address: "",
@@ -13,70 +13,73 @@ const NewShopForm = (props) => {
     zip: "",
     telephone: "",
     website: "",
-    picture: ""
-  })
+    picture: "",
+  });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const validForSubmission = () => {
-    let submitErrors = {}
-    const requiredFields = ["name", "address", "city", "state", "zip"]
-    requiredFields.forEach(field => {
+    let submitErrors = {};
+    const requiredFields = ["name", "address", "city", "state", "zip"];
+    requiredFields.forEach((field) => {
       if (shopRecord[field].trim() === "") {
         submitErrors = {
           ...submitErrors,
-          [field]: "is blank"
-        }
+          [field]: "is blank",
+        };
       }
-    })
-    setErrors(submitErrors)
-    return _.isEmpty(submitErrors)
-  }
+    });
+    setErrors(submitErrors);
+    return _.isEmpty(submitErrors);
+  };
 
   const handleInputChange = (event) => {
     setShopRecord({
       ...shopRecord,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
-  }
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
 
-  const postNewShop = async(event) => {
-    event.preventDefault()
+  const postNewShop = async (event) => {
+    event.preventDefault();
 
     if (validForSubmission()) {
       try {
-        const response = await fetch('/api/v1/shops', {
+        const response = await fetch("/api/v1/shops", {
           method: "POST",
           credentials: "same-origin",
           headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ shop: shopRecord })
-        })
+          body: JSON.stringify({ shop: shopRecord }),
+        });
         if (!response.ok) {
-          const errorMessage = `${response.status} (${response.statusText})`
-          throw new Error(errorMessage)
+          const errorMessage = `${response.status} (${response.statusText})`;
+          throw new Error(errorMessage);
         }
-        const shopBody = await response.json()
-        if (shopBody.shop){
-          setShouldRedirect(true)
+        const shopBody = await response.json();
+        if (shopBody.shop) {
+          setShouldRedirect(true);
         } else if (shopBody.error[0] === "You need to be signed in first") {
-          window.location("/users/sign_in")
-        } else if (shopBody.error){
-          setErrors(shopBody.error)
+          window.location("/users/sign_in");
+        } else if (shopBody.error) {
+          setErrors(shopBody.error);
         }
-      } catch(error) {
-        console.error(`Error in fetch: ${error.message}`)
+      } catch (error) {
+        console.error(`Error in fetch: ${error.message}`);
       }
     }
-  }
+  };
 
+  const onCancel = () => {
+    setShouldRedirect(true);
+  };
   if (shouldRedirect) {
-    return <Navigate to='/shops' />
+    return <Navigate to="/shops" />;
   }
 
-  return(
+  return (
     <form onSubmit={postNewShop}>
       <h2 className="page-header">Submit a new Bubble Tea Shop</h2>
       <ErrorList errors={errors} />
@@ -173,7 +176,7 @@ const NewShopForm = (props) => {
           <div className="medium-9 cell">
             <label>
               Shop Picture (URL)
-              <input 
+              <input
                 type="text"
                 name="picture"
                 value={shopRecord.picture}
@@ -183,15 +186,15 @@ const NewShopForm = (props) => {
           </div>
 
           <div className="button-group cell form-text">
-            <input
-              className="button"
-              type="submit"
-            />
+            <input className="button" type="submit" />
+            <button onClick={onCancel} className="button">
+              Cancel
+            </button>
           </div>
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default NewShopForm
+export default NewShopForm;

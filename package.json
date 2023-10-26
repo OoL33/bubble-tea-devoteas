@@ -16,10 +16,12 @@
     "@rails/webpacker": "3.5",
     "babel-loader": "^8.0.6",
     "foundation": "^4.2.1-1",
-    "foundation-sites": "^6.7.5",
+    "foundation-sites": "6.7.5",
     "prop-types": "~15.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-icons": "^4.11.0",
     "react-router-dom": "6.13.0",
     "redbox-react": "1.6.0"
   },
